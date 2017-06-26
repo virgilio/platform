@@ -27,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->configure('ratelimiter');
         $this->app->configure('multisite');
         $this->app->configure('mail');
+        $this->app->configure('ohanzee-db');
 
         $this->configureAuraDI();
     }
@@ -146,6 +147,38 @@ class AppServiceProvider extends ServiceProvider
             $user = $repo->get($genericUser ? $genericUser->id : null);
 
             return $user;
+        });
+
+
+        // Kohana injection
+        // DB config
+        $di->set('db.config', function() use ($di) {
+            $config = config('ohanzee-db');
+            $config = $config['default'];
+
+            // Is this a multisite install?
+            $multisite = config('multisite.enabled');
+            if ($multisite) {
+                $config = $di->get('multisite')->getDbConfig();
+            }
+
+            return $config;
+        });
+        // Multisite db
+        $di->set('kohana.db.multisite', function () use ($di) {
+            $config = config('ohanzee-db');
+
+            return \Ohanzee\Database::instance('multisite', $config['default']);
+        });
+        // Deployment db
+        $di->set('kohana.db', function() use ($di) {
+            return \Ohanzee\Database::instance('deployment', $di->get('db.config'));
+        });
+
+        // Intercom config settings
+        $di->set('site.intercomAppToken', function() use ($di) {
+            // FIXME
+            return false;
         });
     }
 

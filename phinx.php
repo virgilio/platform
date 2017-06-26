@@ -6,7 +6,7 @@ $db = service('db.config');
 
 return [
 	'paths' => [
-		'migrations' => realpath(APPPATH . '../migrations'),
+		'migrations' => base_path('migrations'),
 	],
 	'environments' => [
 		'default_migration_table' => 'phinxlog',

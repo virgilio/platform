@@ -366,7 +366,7 @@ class RestContext implements Context
 
 		$this->theResponseIsJson();
 
-		if (\Arr::path($data, $propertyName) === null) {
+		if (array_get($data, $propertyName) === null) {
 			throw new \Exception("Property '".$propertyName."' is not set!\n");
 		}
 	}
@@ -381,7 +381,7 @@ class RestContext implements Context
 
 		$this->theResponseIsJson();
 
-		if (\Arr::path($data, $propertyName) !== null) {
+		if (array_get($data, $propertyName) !== null) {
 			throw new \Exception("Property '".$propertyName."' is set but should not be!\n");
 		}
 	}
@@ -395,7 +395,7 @@ class RestContext implements Context
 
 		$this->theResponseIsJson();
 
-		$actualPropertyValue = \Arr::path($data, $propertyName);
+		$actualPropertyValue = array_get($data, $propertyName);
 
 		if ($actualPropertyValue === null) {
 			throw new \Exception("Property '".$propertyName."' is not set!\n");
@@ -419,7 +419,7 @@ class RestContext implements Context
 
 		$this->theResponseIsJson();
 
-		$actualPropertyValue = \Arr::path($data, $propertyName);
+		$actualPropertyValue = array_get($data, $propertyName);
 
 		if ($actualPropertyValue === null) {
 			throw new \Exception("Property '".$propertyName."' is not set!\n");
@@ -438,7 +438,7 @@ class RestContext implements Context
 
 		$this->theResponseIsJson();
 
-		$actualPropertyValue = \Arr::path($data, $propertyName);
+		$actualPropertyValue = array_get($data, $propertyName);
 
 		if ($actualPropertyValue === null) {
 			throw new \Exception("Property '".$propertyName."' is not set!\n");
@@ -458,7 +458,7 @@ class RestContext implements Context
 
 		$this->theResponseIsJson();
 
-		$actualPropertyValue = \Arr::path($data, $propertyName);
+		$actualPropertyValue = array_get($data, $propertyName);
 
 		if ($actualPropertyValue === null) {
 			throw new Exception("Property '".$propertyName."' is not set!\n");
@@ -491,7 +491,7 @@ class RestContext implements Context
 
 		$this->theResponseIsJson();
 
-		$actualPropertyValue = \Arr::path($data, $propertyName);
+		$actualPropertyValue = array_get($data, $propertyName);
 
 		if ($actualPropertyValue === null) {
 			throw new Exception("Property '".$propertyName."' is not set!\n");
@@ -524,7 +524,7 @@ class RestContext implements Context
 
 		$this->theResponseIsJson();
 
-		$actualPropertyValue = \Arr::path($data, $propertyName);
+		$actualPropertyValue = array_get($data, $propertyName);
 
 		if ($actualPropertyValue === null) {
 			throw new \Exception("Property '".$propertyName."' is not set!\n");
@@ -549,7 +549,7 @@ class RestContext implements Context
 
 		$this->theResponseIsJson();
 
-		$actualPropertyValue = \Arr::path($data, $propertyName);
+		$actualPropertyValue = array_get($data, $propertyName);
 
 		if ($actualPropertyValue === null) {
 			throw new \Exception("Property '".$propertyName."' is not set!\n");
@@ -573,7 +573,7 @@ class RestContext implements Context
 
 		$this->theResponseIsJson();
 
-		$actualPropertyValue = \Arr::path($data, $propertyName);
+		$actualPropertyValue = array_get($data, $propertyName);
 
 		if (!empty($actualPropertyValue)) {
 			throw new \Exception("Property '{$propertyName}' is not empty!\n");
@@ -661,7 +661,7 @@ class RestContext implements Context
 	 */
 	private function prefixAppPath(&$item)
 	{
-		$item = DOCROOT.'/../'.$item;
+		$item = base_path($item);
 	}
 
 	/**
