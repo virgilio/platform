@@ -11,10 +11,15 @@
 
 return array(
 	'default_providers' => array(
-		Message_Type::SMS => 'smssync',
-		Message_Type::IVR => false,
-		Message_Type::EMAIL => 'email',
-		Message_Type::TWITTER => 'twitter'
+		// Message_Type::SMS => 'smssync',
+		// Message_Type::IVR => false,
+		// Message_Type::EMAIL => 'email',
+		// Message_Type::TWITTER => 'twitter'
+
+		'sms' => 'smssync',
+		'ivr' => false,
+		'email' => 'email',
+		'twitter' => 'twitter'
 	),
 	'providers' => array(
 		// List of data providers key=provider value=enabled

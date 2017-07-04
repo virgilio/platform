@@ -34,7 +34,6 @@ class PostSetListener extends AbstractListener
 			'set'  => $set_id,
 			'post' => $post_id
 		];
-
 		$entity = $this->repo->getEntity();
 		$entity->setState($state);
 		$this->repo->create($entity);
